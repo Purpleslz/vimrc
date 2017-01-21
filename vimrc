@@ -2,6 +2,16 @@ set encoding=utf-8
 
 set number
 
+function! g:ToggleNuMode()
+	if(&relativenumber == 1)
+		set number
+	else
+		set relativenumber
+	endif
+endfunc
+
+nnoremap <silent> <F1> :call g:ToggleNuMode()<CR>
+
 syntax on
 
 set smartindent
