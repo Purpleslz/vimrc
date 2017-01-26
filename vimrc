@@ -1,6 +1,9 @@
 " set encoding
 set encoding=utf-8
 
+" set backspace
+set backspace=indent,eol,start
+
 " Plugin
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -13,6 +16,10 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
+" vim-airline
+Plugin 'vim-airline/vim-airline'
+set laststatus=2
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -37,12 +44,12 @@ set hlsearch
 nnoremap <silent> <F2> :nohls<CR>
 
 " map <TAB> to <C-]>
-nnoremap <silent> <TAB> <C-]>
+" nnoremap <silent> <TAB> <C-]>
 
 " map F1 to control change number between relativenumber
 function! g:ToggleNuMode()
 	if(&relativenumber == 1)
-		set number
+		set norelativenumber
 	else
 		set relativenumber
 	endif
@@ -50,10 +57,14 @@ endfunc
 
 nnoremap <silent> <F1> :call g:ToggleNuMode()<CR>
 
+" map SHFIT-TAB to :tabnext
+map <S-TAB> :tabnext<CR>
 " syntax 
 syntax on
 
 " indent format
+set cindent
+set autoindent
 set smartindent
 
 set tabstop=4
@@ -62,4 +73,4 @@ set shiftwidth=4
 
 " colorscheme
 " use iterm2 color
-" colorscheme desert
+"colorscheme desert
