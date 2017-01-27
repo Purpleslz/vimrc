@@ -17,7 +17,9 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+" --------------------------------------------------------------------------
 " vim-airline
+" --------------------------------------------------------------------------
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 set laststatus=2
@@ -45,7 +47,9 @@ let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = '∄'
 let g:airline_symbols.whitespace = 'Ξ'
 
+" --------------------------------------------------------------------------
 " nerdcommenter
+" --------------------------------------------------------------------------
 Plugin 'scrooloose/nerdcommenter'
 " <leader> = \
 
@@ -69,6 +73,11 @@ let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 "let g:NERDTrimTrailingWhitespace = 1
+
+" --------------------------------------------------------------------------
+" ctrlp
+" --------------------------------------------------------------------------
+Plugin 'kien/ctrlp.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
