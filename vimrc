@@ -94,9 +94,16 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 
-map <F7> :SyntasticCheck<CR>
-map <F8> :SyntasticReset<CR>
-map <F9> :SyntasticToggleMode<CR>
+map <silent> <F7> :SyntasticCheck<CR>
+map <silent> <F8> :SyntasticReset<CR>
+map <silent> <F9> :SyntasticToggleMode<CR>
+
+" --------------------------------------------------------------------------
+"  NERDtree
+" --------------------------------------------------------------------------
+Plugin 'scrooloose/nerdtree'
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+map <C-n> :NERDTreeToggle<CR>
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
