@@ -4,6 +4,35 @@ set encoding=utf-8
 " set backspace
 set backspace=indent,eol,start
 
+" mapleader
+let mapleader=";"
+
+" 定义快捷键关闭当前分割窗口
+nmap <Leader>q :q<CR>
+" 定义快捷键保存当前窗口内容
+nmap <Leader>w :w<CR>
+" 定义快捷键保存所有窗口内容并退出 vim
+nmap <Leader>WQ :wa<CR>:q<CR>
+" 不做任何保存，直接退出 vim
+nmap <Leader>Q :qa!<CR>
+
+" 设置快捷键遍历子窗口
+" 依次遍历
+nnoremap nw <C-W><C-W>
+" 跳转至右方的窗口
+nnoremap <Leader>lw <C-W>l
+" 跳转至方的窗口
+nnoremap <Leader>hw <C-W>h
+" 跳转至上方的子窗口
+nnoremap <Leader>kw <C-W>k
+" 跳转至下方的子窗口
+nnoremap <Leader>jw <C-W>j
+
+" 设置快捷键将选中文本块复制至系统剪贴板
+vnoremap <Leader>y "+y
+" 设置快捷键将系统剪贴板内容粘贴至vim
+nmap <Leader>p "+p
+
 " Plugin
 set nocompatible              " be iMproved, required
 filetype off                  " required
@@ -16,6 +45,12 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
+" --------------------------------------------------------------------------
+" tagbar
+" --------------------------------------------------------------------------
+Plugin 'majutsushi/tagbar'
+nmap <silent> <F3> :TagbarToggle<CR>
 
 " --------------------------------------------------------------------------
 " vim-airline
@@ -80,6 +115,44 @@ let g:NERDCommentEmptyLines = 1
 Plugin 'kien/ctrlp.vim'
 
 " --------------------------------------------------------------------------
+"  NERDtree
+" --------------------------------------------------------------------------
+Plugin 'scrooloose/nerdtree'
+
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+map <silent> <F4> :NERDTreeToggle<CR>
+
+" --------------------------------------------------------------------------
+"  easymotion
+" --------------------------------------------------------------------------
+Plugin 'easymotion/vim-easymotion'
+
+" --------------------------------------------------------------------------
+"  YouCompleteMe
+" --------------------------------------------------------------------------
+Plugin 'Valloric/YouCompleteMe'
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_always_populate_location_list = 0 "default 0
+let g:ycm_open_loclist_on_ycm_diags = 0 "default 1
+
+let g:ycm_complete_in_strings = 1 "default 1
+let g:ycm_collect_identifiers_from_tags_files = 0 "default 0
+let g:ycm_path_to_python_interpreter = '' "default ''
+let g:ycm_complete_in_comments=1
+
+" 基于语义的代码导航
+nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
+" 只能是 #include 或已打开的文件
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+
+" 语法关键字补全
+let g:ycm_seed_identifiers_with_syntax=1
+
+" --------------------------------------------------------------------------
 "  syntastic
 " --------------------------------------------------------------------------
 Plugin 'vim-syntastic/syntastic'
@@ -97,21 +170,6 @@ let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_
 map <silent> <F7> :SyntasticCheck<CR>
 map <silent> <F8> :SyntasticReset<CR>
 map <silent> <F9> :SyntasticToggleMode<CR>
-
-" --------------------------------------------------------------------------
-"  NERDtree
-" --------------------------------------------------------------------------
-Plugin 'scrooloose/nerdtree'
-
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-map <C-n> :NERDTreeToggle<CR>
-
-
-" --------------------------------------------------------------------------
-"  easymotion
-" --------------------------------------------------------------------------
-Plugin 'easymotion/vim-easymotion'
 
 
 " All of your Plugins must be added before the following line
@@ -164,6 +222,10 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
+" fold
+"set foldmethod=indent
+set foldmethod=syntax
+set nofoldenable
 " colorscheme
 " use iterm2 color
 "colorscheme desert
