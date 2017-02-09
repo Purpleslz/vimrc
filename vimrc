@@ -57,6 +57,7 @@ nmap <silent> <F3> :TagbarToggle<CR>
 " --------------------------------------------------------------------------
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+set t_Co=256
 set laststatus=2
 
 if !exists('g:airline_symbols')
@@ -131,46 +132,46 @@ Plugin 'easymotion/vim-easymotion'
 " --------------------------------------------------------------------------
 "  YouCompleteMe
 " --------------------------------------------------------------------------
-Plugin 'Valloric/YouCompleteMe'
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_enable_diagnostic_signs = 0
-let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_always_populate_location_list = 0 "default 0
-let g:ycm_open_loclist_on_ycm_diags = 0 "default 1
-
-let g:ycm_complete_in_strings = 1 "default 1
-let g:ycm_collect_identifiers_from_tags_files = 0 "default 0
-let g:ycm_path_to_python_interpreter = '' "default ''
-let g:ycm_complete_in_comments=1
-
-" 基于语义的代码导航
-nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
-" 只能是 #include 或已打开的文件
-nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-
-" 语法关键字补全
-let g:ycm_seed_identifiers_with_syntax=1
-
+"Plugin 'Valloric/YouCompleteMe'
+"let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+"let g:ycm_show_diagnostics_ui = 0
+"let g:ycm_enable_diagnostic_signs = 0
+"let g:ycm_enable_diagnostic_highlighting = 0
+"let g:ycm_always_populate_location_list = 0 "default 0
+"let g:ycm_open_loclist_on_ycm_diags = 0 "default 1
+"
+"let g:ycm_complete_in_strings = 1 "default 1
+"let g:ycm_collect_identifiers_from_tags_files = 0 "default 0
+"let g:ycm_path_to_python_interpreter = '' "default ''
+"let g:ycm_complete_in_comments=1
+"
+"" 基于语义的代码导航
+"nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
+"" 只能是 #include 或已打开的文件
+"nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+"
+"" 语法关键字补全
+"let g:ycm_seed_identifiers_with_syntax=1
+"
 " --------------------------------------------------------------------------
 "  syntastic
 " --------------------------------------------------------------------------
-Plugin 'vim-syntastic/syntastic'
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-
-map <silent> <F7> :SyntasticCheck<CR>
-map <silent> <F8> :SyntasticReset<CR>
-map <silent> <F9> :SyntasticToggleMode<CR>
-
+"Plugin 'vim-syntastic/syntastic'
+"
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+""let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+"
+"map <silent> <F7> :SyntasticCheck<CR>
+"map <silent> <F8> :SyntasticReset<CR>
+"map <silent> <F9> :SyntasticToggleMode<CR>
+"
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
