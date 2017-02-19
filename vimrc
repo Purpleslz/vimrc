@@ -4,6 +4,9 @@ set encoding=utf-8
 " set backspace
 set backspace=indent,eol,start
 
+" 256 color
+set t_Co=256
+
 " mapleader
 let mapleader=";"
 
@@ -57,7 +60,6 @@ nmap <silent> <F3> :TagbarToggle<CR>
 " --------------------------------------------------------------------------
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-set t_Co=256
 set laststatus=2
 
 if !exists('g:airline_symbols')
