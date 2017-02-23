@@ -21,7 +21,7 @@ nmap <Leader>Q :qa!<CR>
 
 " 设置快捷键遍历子窗口
 " 依次遍历
-nnoremap nw <C-W><C-W>
+nnoremap <Leader>nw <C-W><C-W>
 " 跳转至右方的窗口
 nnoremap <Leader>lw <C-W>l
 " 跳转至方的窗口
@@ -38,7 +38,7 @@ nmap <Leader>p "+p
 
 " Plugin
 set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype on                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -118,7 +118,7 @@ let g:NERDCommentEmptyLines = 1
 Plugin 'kien/ctrlp.vim'
 
 " --------------------------------------------------------------------------
-"  NERDtree
+" NERDtree
 " --------------------------------------------------------------------------
 Plugin 'scrooloose/nerdtree'
 
@@ -127,12 +127,12 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 map <silent> <F4> :NERDTreeToggle<CR>
 
 " --------------------------------------------------------------------------
-"  easymotion
+" easymotion
 " --------------------------------------------------------------------------
 Plugin 'easymotion/vim-easymotion'
 
 " --------------------------------------------------------------------------
-"  YouCompleteMe
+" YouCompleteMe
 " --------------------------------------------------------------------------
 "Plugin 'Valloric/YouCompleteMe'
 "let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
@@ -230,5 +230,5 @@ set shiftwidth=4
 set foldmethod=syntax
 set nofoldenable
 " colorscheme
-" use iterm2 color
+" use iterm2 colorscheme
 "colorscheme desert
