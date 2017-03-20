@@ -4,6 +4,9 @@ set encoding=utf-8
 " set backspace
 set backspace=indent,eol,start
 
+" jumps to the last known position in a file
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
 " 256 color
 set t_Co=256
 
@@ -11,25 +14,25 @@ set t_Co=256
 let mapleader=";"
 
 " 定义快捷键关闭当前分割窗口
-nmap <Leader>q :q<CR>
+nmap <silent> <Leader>q :q<CR>
 " 定义快捷键保存当前窗口内容
-nmap <Leader>w :w<CR>
+nmap <silent> <Leader>w :w<CR>
 " 定义快捷键保存所有窗口内容并退出 vim
-nmap <Leader>WQ :wa<CR>:q<CR>
+nmap <silent> <Leader>WQ :wa<CR>:q<CR>
 " 不做任何保存，直接退出 vim
-nmap <Leader>Q :qa!<CR>
+nmap <silent> <Leader>Q :qa!<CR>
 
 " 设置快捷键遍历子窗口
 " 依次遍历
-nnoremap <Leader>nw <C-W><C-W>
+nnoremap <silent> <Leader>nw <C-W><C-W>
 " 跳转至右方的窗口
-nnoremap <Leader>lw <C-W>l
+nnoremap <silent> <Leader>lw <C-W>l
 " 跳转至方的窗口
-nnoremap <Leader>hw <C-W>h
+nnoremap <silent> <Leader>hw <C-W>h
 " 跳转至上方的子窗口
-nnoremap <Leader>kw <C-W>k
+nnoremap <silent> <Leader>kw <C-W>k
 " 跳转至下方的子窗口
-nnoremap <Leader>jw <C-W>j
+nnoremap <silent> <Leader>jw <C-W>j
 
 " 设置快捷键将选中文本块复制至系统剪贴板
 vnoremap <Leader>y "+y
@@ -215,6 +218,9 @@ nnoremap <silent> <F1> :call g:ToggleNuMode()<CR>
 map <S-TAB> :tabnext<CR>
 " syntax 
 syntax on
+
+" map pastetoggle
+set pastetoggle=<F5>
 
 " indent format
 set cindent
