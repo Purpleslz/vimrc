@@ -13,6 +13,8 @@ set t_Co=256
 " mapleader
 let mapleader=";"
 
+set wildmenu
+
 " 定义快捷键关闭当前分割窗口
 nmap <silent> <Leader>q :q<CR>
 " 定义快捷键保存当前窗口内容
@@ -42,6 +44,7 @@ nmap <Leader>p "+p
 " Plugin
 set nocompatible              " be iMproved, required
 filetype on                  " required
+filetype plugin on
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -92,8 +95,6 @@ let g:airline_symbols.whitespace = 'Ξ'
 " nerdcommenter
 " --------------------------------------------------------------------------
 Plugin 'scrooloose/nerdcommenter'
-" <leader> = \
-
 " Add spaces after comment delimiters by default
 "let g:NERDSpaceDelims = 1
 
@@ -120,6 +121,11 @@ let g:NERDCommentEmptyLines = 1
 " --------------------------------------------------------------------------
 Plugin 'kien/ctrlp.vim'
 
+let g:ctrlp_max_files = 0
+let g:ctrlp_max_depth = 10 
+let g:ctrlp_open_new_file = 't'
+set wildignore+=*_log*,*.a,*.o,*unittest,*functest,*.log,*.jar,*log_info*
+
 " --------------------------------------------------------------------------
 " NERDtree
 " --------------------------------------------------------------------------
@@ -137,46 +143,52 @@ Plugin 'easymotion/vim-easymotion'
 " --------------------------------------------------------------------------
 " YouCompleteMe
 " --------------------------------------------------------------------------
-"Plugin 'Valloric/YouCompleteMe'
-"let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-"let g:ycm_show_diagnostics_ui = 0
-"let g:ycm_enable_diagnostic_signs = 0
-"let g:ycm_enable_diagnostic_highlighting = 0
-"let g:ycm_always_populate_location_list = 0 "default 0
-"let g:ycm_open_loclist_on_ycm_diags = 0 "default 1
-"
-"let g:ycm_complete_in_strings = 1 "default 1
-"let g:ycm_collect_identifiers_from_tags_files = 0 "default 0
-"let g:ycm_path_to_python_interpreter = '' "default ''
-"let g:ycm_complete_in_comments=1
-"
-"" 基于语义的代码导航
-"nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
-"" 只能是 #include 或已打开的文件
-"nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-"
-"" 语法关键字补全
-"let g:ycm_seed_identifiers_with_syntax=1
-"
+Plugin 'Valloric/YouCompleteMe'
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_always_populate_location_list = 0 "default 0
+let g:ycm_open_loclist_on_ycm_diags = 0 "default 1
+
+let g:ycm_complete_in_strings = 1 "default 1
+let g:ycm_collect_identifiers_from_tags_files = 0 "default 0
+let g:ycm_path_to_python_interpreter = '' "default ''
+let g:ycm_complete_in_comments=1
+let g:ycm_min_num_of_chars_for_completion=1
+let g:ycm_seed_identifiers_with_syntax=1
+
+" 基于语义的代码导航
+nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
+" 只能是 #include 或已打开的文件
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+
+" 语法关键字补全
+let g:ycm_seed_identifiers_with_syntax=1
+
 " --------------------------------------------------------------------------
 "  syntastic
 " --------------------------------------------------------------------------
-"Plugin 'vim-syntastic/syntastic'
-"
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-""let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-"
-"map <silent> <F7> :SyntasticCheck<CR>
-"map <silent> <F8> :SyntasticReset<CR>
-"map <silent> <F9> :SyntasticToggleMode<CR>
-"
+Plugin 'vim-syntastic/syntastic'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+
+map <silent> <F7> :SyntasticCheck<CR>
+map <silent> <F8> :SyntasticReset<CR>
+map <silent> <F9> :SyntasticToggleMode<CR>
+
+" --------------------------------------------------------------------------
+"  auto-pairs
+" --------------------------------------------------------------------------
+Plugin 'jiangmiao/auto-pairs'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -196,14 +208,7 @@ filetype plugin indent on    " required
 " line number
 set number
 
-" search option
-set hlsearch
-nnoremap <silent> <F2> :nohls<CR>
-
-" map <TAB> to <C-]>
-" nnoremap <silent> <TAB> <C-]>
-
-" map F1 to control change number between relativenumber
+" map <F1> key to control change number between relativenumber
 function! g:ToggleNuMode()
 	if(&relativenumber == 1)
 		set norelativenumber
@@ -214,27 +219,40 @@ endfunc
 
 nnoremap <silent> <F1> :call g:ToggleNuMode()<CR>
 
+" search option
+set hlsearch
+set ignorecase
+nnoremap <silent> <F2> :nohls<CR>
+
 " map SHFIT-TAB to :tabnext
 map <S-TAB> :tabnext<CR>
+
 " syntax 
 syntax on
 
 " map pastetoggle
 set pastetoggle=<F5>
 
+" highlight line and column
+set cursorline
+set cursorcolumn
+
 " indent format
 set cindent
 set autoindent
 set smartindent
+filetype indent on 
 
+set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+set backspace=2
 
 " fold
 "set foldmethod=indent
-set foldmethod=syntax
-set nofoldenable
+"set foldmethod=syntax
+"set nofoldenable
 " colorscheme
 " use iterm2 colorscheme
 "colorscheme desert
