@@ -122,9 +122,11 @@ let g:NERDCommentEmptyLines = 1
 Plugin 'kien/ctrlp.vim'
 
 let g:ctrlp_max_files = 0
-let g:ctrlp_max_depth = 10 
+let g:ctrlp_max_depth = 10
+set wildignore+=*_log*,*.a,*.o,*unittest,*functest,*.log,*.class,*.jar,*log_info*
 let g:ctrlp_open_new_file = 't'
-set wildignore+=*_log*,*.a,*.o,*unittest,*functest,*.log,*.jar,*log_info*
+let g:ctrlp_open_multiple_files = 't'
+let g:ctrlp_working_path_mode = 'ra'
 
 " --------------------------------------------------------------------------
 " NERDtree
