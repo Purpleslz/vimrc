@@ -183,9 +183,12 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
 
-map <silent> <F7> :SyntasticCheck<CR>
-map <silent> <F8> :SyntasticReset<CR>
-map <silent> <F9> :SyntasticToggleMode<CR>
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+
+map <silent> <F6> :SyntasticCheck<CR>
+map <silent> <F7> :SyntasticReset<CR>
+map <silent> <F8> :SyntasticToggleMode<CR>
 
 " --------------------------------------------------------------------------
 "  auto-pairs
@@ -236,8 +239,8 @@ syntax on
 set pastetoggle=<F5>
 
 " highlight line and column
-set cursorline
-set cursorcolumn
+"set cursorline
+"set cursorcolumn
 
 " indent format
 set cindent
@@ -258,3 +261,6 @@ set backspace=2
 " colorscheme
 " use iterm2 colorscheme
 "colorscheme desert
+
+" compile && run
+nnoremap <F9> :w <CR> :! g++ % -o %< -std=c++11 -O2 && ./%< <CR>
